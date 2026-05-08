@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://pay.kumbipay.com/d77a1e6f-0fea-40b9-9cbd-ba6cb4a3c236",
+      "permanent": false
+    }
+  ]
+}
